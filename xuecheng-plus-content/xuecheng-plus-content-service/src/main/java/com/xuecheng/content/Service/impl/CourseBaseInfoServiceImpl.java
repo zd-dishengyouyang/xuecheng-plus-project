@@ -31,7 +31,7 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         queryWrapper.eq(StringUtils.isNotBlank(courseParamsDto.getAuditStatus()),CourseBase::getAuditStatus,courseParamsDto.getAuditStatus());
 
         //创建分页参数对象，当前页码，每页记录数
-        Page<CourseBase> page = new Page<>(1,2);
+        Page<CourseBase> page = new Page<>(pageParams.getPageNo(), pageParams.getPageSize());
         Page<CourseBase> pageResult = courseBaseMapper.selectPage(page, queryWrapper);
         //数据列表
         List<CourseBase> items = pageResult.getRecords();
