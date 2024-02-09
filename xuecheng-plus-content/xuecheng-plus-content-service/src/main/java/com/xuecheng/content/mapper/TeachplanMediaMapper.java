@@ -11,5 +11,4 @@ import com.xuecheng.content.model.po.TeachplanMedia;
  * @author itcast
  */
 public interface TeachplanMediaMapper extends BaseMapper<TeachplanMedia> {
-
 }
