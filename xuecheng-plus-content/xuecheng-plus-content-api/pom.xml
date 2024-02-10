@@ -19,6 +19,15 @@
             <artifactId>xuecheng-plus-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--服务发现中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
 
         <!--cloud的基础环境包-->
         <dependency>
