@@ -13,7 +13,10 @@ spring:
         group: xuecheng-plus-project
         file-extension: yaml
         refresh-enabled: true
-
+        shared-configs:
+          - data-id: logging-${spring.profiles.active}.yaml
+            group: xuecheng-plus-common
+            refresh: true
   #profiles默认为dev
   profiles:
     active: dev
@@ -29,5 +32,5 @@ spring:
 #    password: mysql
 
 # 日志文件配置路径
-logging:
-  config: classpath:log4j2-dev.xml
+#logging:
+#  config: classpath:log4j2-dev.xml
