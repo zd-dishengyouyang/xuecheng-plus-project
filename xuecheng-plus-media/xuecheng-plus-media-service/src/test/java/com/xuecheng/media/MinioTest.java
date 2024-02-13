@@ -58,7 +58,7 @@ public class MinioTest {
     public void test_delete() throws Exception {
 
         //RemoveObjectArgs
-        RemoveObjectArgs removeObjectArgs = RemoveObjectArgs.builder().bucket("testbucket").object("1.mp4").build();
+        RemoveObjectArgs removeObjectArgs = RemoveObjectArgs.builder().bucket("testbucket").object("test/01/1.mp4").build();
 
         //删除文件
         minioClient.removeObject(removeObjectArgs);
