@@ -12,6 +12,9 @@ import org.springframework.http.MediaType;
 import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Mr.M
@@ -88,8 +91,44 @@ public class MinioTest {
         }
 
     }
+    @Test
+    //将分块文件上传到minio
+    public void uploadChunk() throws IOException, ServerException, InsufficientDataException, InternalException, InvalidResponseException, InvalidKeyException, NoSuchAlgorithmException, XmlParserException, ErrorResponseException {
+        for (int i = 0; i < 24; i++) {
+            UploadObjectArgs uploadObjectArgs = UploadObjectArgs.builder()
+                    .bucket("testbucket")//桶
+                    .filename("D:\\develop\\upload\\chunk\\"+i) //指定本地文件路径
+//                .object("1.mp4")//对象名 在桶下存储该文件
+                    .object("chunk/"+i)//对象名 放在子目录下
+                    .build();
+
+            //上传文件
+            minioClient.uploadObject(uploadObjectArgs);
+            System.out.println("上传分类"+i+"成功");
+        }
+    }
+
+    @Test
+    public void testMerge() throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, ErrorResponseException {
+
+        List<ComposeSource> sources = Stream.iterate(0, i -> ++i)
+                .limit(24)
+                .map(i -> ComposeSource.builder()
+                        .bucket("testbucket")
+                        .object("chunk/".concat(Integer.toString(i)))
+                        .build())
+                .collect(Collectors.toList());
 
 
+        //指定合并后的信息
+        ComposeObjectArgs composeObjectArgs = ComposeObjectArgs
+                .builder()
+                .bucket("testbucket")
+                .object("merge01.mp4")
+                .sources(sources)
+                .build();
+        minioClient.composeObject(composeObjectArgs);
+    }
 
 
 
