@@ -333,10 +333,10 @@ public class MediaFileServiceImpl implements MediaFileService {
     }
 
     @Override
-    public RestResponse mergechunks(Long companyId, String fileMd5, int chunkTotal, UploadFileParamsDto uploadFileParamsDto) {
+    public RestResponse mergeChunks(Long companyId, String fileMd5, int chunkTotal, UploadFileParamsDto uploadFileParamsDto) {
         //分块文件所在目录
         String chunkFileFolderPath = getChunkFileFolderPath(fileMd5);
-        //找到所有的分块文件
+        //找到所有的分块文C件
         List<ComposeSource> sources = Stream.iterate(0, i -> ++i).limit(chunkTotal).map(i -> ComposeSource.builder().bucket(bucket_video).object(chunkFileFolderPath + i).build()).collect(Collectors.toList());
         //源文件名称
         String filename = uploadFileParamsDto.getFilename();

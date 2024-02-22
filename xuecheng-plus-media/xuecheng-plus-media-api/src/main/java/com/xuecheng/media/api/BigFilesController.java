@@ -74,7 +74,7 @@ public class BigFilesController {
         uploadFileParamsDto.setFilename(fileName);
         uploadFileParamsDto.setTags("视频文件");
         uploadFileParamsDto.setFileType("001002");
-        RestResponse restResponse = mediaFileService.mergechunks(1232141425L, fileMd5, chunkTotal, uploadFileParamsDto);
+        RestResponse restResponse = mediaFileService.mergeChunks(1232141425L, fileMd5, chunkTotal, uploadFileParamsDto);
         return restResponse;
 
     }
