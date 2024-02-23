@@ -25,6 +25,4 @@ public class FreemarkerController {
         modelAndView.setViewName("test");
         return modelAndView;
     }
-
-
 }
